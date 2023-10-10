@@ -211,13 +211,12 @@ class DetectionValidator(BaseValidator):
                     on_plot=self.on_plot)
 
     def plot_predictions(self, batch, preds, ni):
-        """Plots predicted bounding boxes on input images and saves the result."""
-        plot_images(batch['img'],
-                    *output_to_target(preds, max_det=self.args.max_det),
-                    paths=batch['im_file'],
-                    fname=self.save_dir / f'val_batch{ni}_pred.jpg',
-                    names=self.names,
-                    on_plot=self.on_plot)  # pred
+    """Saves input images without bounding boxes."""
+    plot_images(batch['img'],
+                paths=batch['im_file'],
+                fname=self.save_dir / f'val_batch{ni}_pred.jpg',
+                on_plot=self.on_plot)
+  # pred
 
     def save_one_txt(self, predn, save_conf, shape, file):
         """Save YOLO detections to a txt file in normalized coordinates in a specific format."""
